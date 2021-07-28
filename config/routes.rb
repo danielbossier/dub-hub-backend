@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   post "/users" => "users#create"
 
+  post "/sessions" => "sessions#create"
+
   get "/teams" => "teams#index"
   post "/teams" => "teams#create"
   get "/teams/:id" => "teams#show"
