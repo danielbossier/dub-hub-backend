@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :leagues, through: :teams
   belongs_to :group
   has_many :user_teams
+  has_many :teams, through: :user_teams
 end
