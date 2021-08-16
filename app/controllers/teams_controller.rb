@@ -11,7 +11,7 @@ class TeamsController < ApplicationController
     al_index = 5
     nl_index = 74
     al_wl_index = 0
-    nl_wl_index = 165
+    nl_wl_index = 180
     team_listings = parsed_page.css("div.tabs__content")
 
     15.times do
@@ -29,8 +29,8 @@ class TeamsController < ApplicationController
       al_index += 3
       nl_teams << n_team
       nl_index += 3
-      al_wl_index += 11
-      nl_wl_index += 11
+      al_wl_index += 12
+      nl_wl_index += 12
     end
     mlb_teams << nl_teams
     mlb_teams << al_teams
