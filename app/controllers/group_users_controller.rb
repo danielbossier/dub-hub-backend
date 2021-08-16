@@ -1,11 +1,11 @@
 class GroupUsersController < ApplicationController
   def index
-    group_users = Group_user.all
+    group_users = GroupUser.all
     render json: group_users
   end
 
   def create
-    group_user = Group_user.new(
+    group_user = GroupUser.new(
       user_id: current_user.id,
       group_id: params[:group_id],
     )
