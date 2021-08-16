@@ -21,4 +21,16 @@ Rails.application.routes.draw do
   get "/leagues/:id" => "leagues#show"
   patch "/leagues/:id" => "leagues#update"
   delete "/leagues/:id" => "leagues#destroy"
+
+  get "/group_users" => "group_users#index"
+  post "/group_users" => "group_users#create"
+  get "/group_users/:id" => "group_users#show"
+  patch "/group_users/:id" => "group_users#update"
+  delete "/group_users/:id" => "group_users#destroy"
+
+  get "/team_users" => "team_users#index"
+  post "/team_users" => "team_users#create"
+  get "/team_users/:id" => "team_users#show"
+  patch "/team_users/:id" => "team_users#update"
+  delete "/team_users/:id" => "team_users#destroy"
 end
