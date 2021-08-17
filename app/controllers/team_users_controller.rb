@@ -5,14 +5,14 @@ class TeamUsersController < ApplicationController
   end
 
   def create
-    team_users = TeamUser.new(
+    team_user = TeamUser.new(
       user_id: current_user.id,
       team_id: params[:team_id],
     )
-    if team_users.save
-      render json: team_users
+    if team_user.save
+      render json: team_user
     else
-      render json: { errors: team_users.errors.full_messages }, status: 422
+      render json: { errors: team_user.errors.full_messages }, status: 422
     end
   end
 end
