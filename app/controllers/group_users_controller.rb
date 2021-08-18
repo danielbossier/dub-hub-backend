@@ -15,4 +15,16 @@ class GroupUsersController < ApplicationController
       render json: { errors: group_user.errors.full_messages }, status: 422
     end
   end
+
+  def update
+    group_user = GroupUser.find_by(id: params[:id])
+    group_user.group_id = params[:group_id] || group_user.group_id
+    group_user.user_id = params[:user_id] || group_user.user_id
+
+    if group_user.save
+      render json: group_user
+    else
+      render json: { errors: group_user.errors.full_messages }, status: 422
+    end
+  end
 end
