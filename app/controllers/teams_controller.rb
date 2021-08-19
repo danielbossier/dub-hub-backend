@@ -74,7 +74,7 @@ class TeamsController < ApplicationController
     team.conference = params[:conference] || team.conference
     team.division = params[:division] || team.division
     team.league_id = params[:league_id] || team.league_id
-    team.save
+    s team.save
     render json: team.as_json
   end
 

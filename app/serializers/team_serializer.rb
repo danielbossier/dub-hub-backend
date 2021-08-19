@@ -1,5 +1,5 @@
 class TeamSerializer < ActiveModel::Serializer
-  attributes :id, :name, :wins, :losses
+  attributes :id, :name, :wins, :losses, :city
 
   belongs_to :league
   has_many :team_users
