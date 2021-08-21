@@ -12,7 +12,28 @@ class TeamsController < ApplicationController
     nl_index = 74
     al_wl_index = 0
     nl_wl_index = 180
+    al_team_index = 1
+    nl_team_index = 16
     team_listings = parsed_page.css("div.tabs__content")
+
+    15.times do
+      a_team = {
+        name: team_listings.css("a.AnchorLink")[al_index].text,
+        wins: team_listings.css("span.stat-cell")[al_wl_index].text,
+        losses: team_listings.css("span.stat-cell")[al_wl_index + 1].text,
+      }
+
+      teams = Team.all
+      team = teams.find(al_team_index)
+      team.name = a_team[:name] || team.name
+      team.wins = a_team[:wins] || team.wins
+      team.losses = a_team[:losses] || team.losses
+      team.save
+      al_teams << a_team
+      al_index += 3
+      al_wl_index += 12
+      al_team_index += 1
+    end
 
     15.times do
       n_team = {
@@ -20,22 +41,26 @@ class TeamsController < ApplicationController
         wins: team_listings.css("span.stat-cell")[nl_wl_index].text,
         losses: team_listings.css("span.stat-cell")[nl_wl_index + 1].text,
       }
-      a_team = {
-        name: team_listings.css("a.AnchorLink")[al_index].text,
-        wins: team_listings.css("span.stat-cell")[al_wl_index].text,
-        losses: team_listings.css("span.stat-cell")[al_wl_index + 1].text,
-      }
-      al_teams << a_team
-      al_index += 3
+      teams = Team.all
+      team = teams.find(nl_team_index)
+      team.name = n_team[:name] || team.name
+      team.wins = n_team[:wins] || team.wins
+      team.losses = n_team[:losses] || team.losses
+      team.save
       nl_teams << n_team
-      nl_index += 3
-      al_wl_index += 12
-      nl_wl_index += 12
-    end
-    mlb_teams << nl_teams
-    mlb_teams << al_teams
 
+      nl_index += 3
+      nl_wl_index += 12
+      nl_team_index += 1
+    end
+    mlb_teams << al_teams
+    mlb_teams << nl_teams
     render json: mlb_teams
+    # if team.save
+    #   render json: mlb_teams
+    # else
+    #   render json: { errors: team.errors.full_messages }, status: 422
+    # end
   end
 
   def index
@@ -74,8 +99,12 @@ class TeamsController < ApplicationController
     team.conference = params[:conference] || team.conference
     team.division = params[:division] || team.division
     team.league_id = params[:league_id] || team.league_id
-    s team.save
-    render json: team.as_json
+
+    if team.save
+      render json: team
+    else
+      render json: { errors: team.errors.full_messages }, status: 422
+    end
   end
 
   def destroy
