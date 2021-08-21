@@ -71,7 +71,6 @@ class TeamsController < ApplicationController
   def create
     team = Team.new(
       name: params[:name],
-      city: params[:city],
       wins: params[:wins],
       losses: params[:losses],
       ties: params[:ties],
@@ -92,7 +91,6 @@ class TeamsController < ApplicationController
   def update
     team = Team.find_by(id: params[:id])
     team.name = params[:name] || team.name
-    team.city = params[:city] || team.city
     team.wins = params[:wins] || team.wins
     team.losses = params[:losses] || team.losses
     team.ties = params[:ties] || team.ties
