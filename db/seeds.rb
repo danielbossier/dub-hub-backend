@@ -2,9 +2,6 @@ Group.create!([
   { name: "HOFers" },
   { name: "Designated Hitters" },
   { name: "MVPs" },
-  { name: "Sabermetricians" },
-  { name: "Corner Outfielders" },
-  { name: "Cardinals HOFers" },
   { name: "OGs" },
   { name: "Warehouse" },
 ])
