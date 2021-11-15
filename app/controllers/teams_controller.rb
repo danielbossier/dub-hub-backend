@@ -48,7 +48,6 @@ class TeamsController < ApplicationController
       team.losses = n_team[:losses] || team.losses
       team.save
       nl_teams << n_team
-
       nl_index += 3
       nl_wl_index += 12
       nl_team_index += 1
