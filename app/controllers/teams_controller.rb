@@ -11,7 +11,7 @@ class TeamsController < ApplicationController
     al_index = 5
     nl_index = 74
     al_wl_index = 0
-    nl_wl_index = 165
+    nl_wl_index = 180          # needs to be toggled between 165 and 180 when table changes
     al_team_index = 1
     nl_team_index = 16
     team_listings = parsed_page.css("div.tabs__content")
@@ -31,7 +31,7 @@ class TeamsController < ApplicationController
       team.save
       al_teams << a_team
       al_index += 3
-      al_wl_index += 12
+      al_wl_index += 12               # With Playoff Odds = 12, without = 11
       al_team_index += 1
     end
 
@@ -49,7 +49,7 @@ class TeamsController < ApplicationController
       team.save
       nl_teams << n_team
       nl_index += 3
-      nl_wl_index += 12
+      nl_wl_index += 12                # With Playoff Odds = 12, without = 11
       nl_team_index += 1
     end
     mlb_teams << al_teams
