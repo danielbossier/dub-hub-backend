@@ -1,3 +1,5 @@
+# Might need to uncomment all of this
+#
 # Group.create!([
 #   { name: "HOFers" },
 #   { name: "Designated Hitters" },
