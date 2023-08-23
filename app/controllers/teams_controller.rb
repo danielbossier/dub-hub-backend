@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user, except: [:index, :show, :display]
 
-  def display
+  def display           # For some reason an array 60 teams long is getting created "second request", the last 30 teams apppear to be correct
     url = "https://www.espn.com/mlb/standings"
     unparsed_page = HTTParty.get(url)
     parsed_page = Nokogiri::HTML(unparsed_page)
